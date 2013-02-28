@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Phonegap</title>
+  <script src="phonegap-1.2.0.js"></script>
+  <script>
+     function onLoad(){
+          document.addEventListener("deviceready", onDeviceReady, true);
+     }
+     function onDeviceReady(){
+          navigator.notification.alert("PhoneGap is working!!");
+     }
+  </script>
+  </head>
+  <body onload="onLoad();">
+       <h1>Welcome to PhoneGap</h1>
+	   <p>New change</p>
+       <h2>Edit assets/www/index.html</h2>
+  </body>
+</html>
