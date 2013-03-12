@@ -152,3 +152,7 @@ h1 {
 .mapSection {
 	
 }
+
+#noInternet, #mapSection {
+	display: none;
+}

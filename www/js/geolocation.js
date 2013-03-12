@@ -18,29 +18,39 @@
  */
 
 document.addEventListener("deviceready", onDeviceReady, false);
+document.addEventListener("offline", onOfflineMode, false);
+document.addEventListener("online", onOnlineMode, false);
+var offline;
 
 function onDeviceReady() {
 	checkConnection();
 }
 
+function onOfflineMode() {
+	offline = true;
+}
+
+function onOnlineMode() {
+	offline = false;
+}
+
 function checkConnection() {
-	if(navigator.network.connection.type == Connection.NONE){
+	if(offline == true){
 		$("#noInternet").css("display", "block");
 		$("#mapSection").css("display", "none");
 	} else {
 		$("#noInternet").css("display", "none");
-		navigator.geolocation.watchPosition(onSuccess, onError, { frequency: 3000, enableHighAccuracy: true });
+		$("#mapSection").css("display", "block");
+		navigator.geolocation.watchPosition(onSuccess, onError, { frequency: 3000});
 	}
 }
 
 function onSuccess(position) {
-        var element = document.getElementById('location');
-        element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
-                            'Longitude: '          + position.coords.longitude             + '<br />';
+		$('#location').text('Latitude: '           + position.coords.latitude              + '<br />' +
+							 'Longitude: '          + position.coords.longitude             + '<br />');
     }
 
 // onError Callback
 function onError(error) {
-    alert('code: '    + error.code    + '\n' +
-            'message: ' + error.message + '\n');
+    $('#location').text(error.message);
 }
