@@ -27,30 +27,50 @@ function onDeviceReady() {
 }
 
 function onOfflineMode() {
+	//if the device has no internet connection, set var to true
 	offline = true;
 }
 
 function onOnlineMode() {
+	//if the device has an internet connection, set var to false
 	offline = false;
 }
 
 function checkConnection() {
+	//Checks if the device is offline, if so do not try and get geolocation
 	if(offline == true){
 		$("#noInternet").css("display", "block");
 		$("#mapSection").css("display", "none");
 	} else {
 		$("#noInternet").css("display", "none");
 		$("#mapSection").css("display", "block");
-		navigator.geolocation.watchPosition(onSuccess, onError, { frequency: 3000});
+		navigator.geolocation.getCurrentPosition(onSuccess, onError);
 	}
 }
 
-function onSuccess(position) {
-		$('#location').text('Latitude: '           + position.coords.latitude              + '<br />' +
-							 'Longitude: '          + position.coords.longitude             + '<br />');
-    }
+function onSuccess(position) {	
+
+	//Display the current position of the device
+	$('#lat').text(position.coords.latitude);
+	$('#long').text(position.coords.longitude);
+
+	//Create a new point on the google maps with device geolocation
+    var point = new google.maps.LatLng(position.coords.latitude, 
+                                    position.coords.longitude);
+
+    // Initialize the Google Maps API v3
+    var map = new google.maps.Map(document.getElementById('mapSection'), {
+                                zoom: 16,
+                                center: point,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                                });
+
+    // Place a marker on the map of current location
+    new google.maps.Marker({ position: point, map: map}); 
+}
 
 // onError Callback
 function onError(error) {
+	//If there is an error, display message
     $('#location').text(error.message);
 }

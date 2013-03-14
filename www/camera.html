@@ -26,37 +26,61 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.3.0.min.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile.theme-1.3.0.min.css" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCoM9I4u9KMjvEFg7LSHUNWnX-GB1j80Ws&sensor=false"></script>
         <script type="text/javascript" src="cordova-2.5.0.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/camera.js"></script>
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.3.0.min.js"></script>
-        <script type="text/javascript">
-          app.initialize();
-        </script>
       <title>Hello World</title>
     </head>
     <body>
       <div id="wrapper" data-role="page">
         <div data-role="header">
-          <h1>Home</h1>
+          <h1>Capture</h1>
+          <div id="head" data-role="navbar">
+            <ul>
+              <li><a href="#photo">Photo</a></li>
+              <li><a href="#">Video</a></li>
+              <li><a href="#audio">Audio</a></li>
+            </ul>
+          </div>
         </div>
         <div data-role="content" class="app">
-          <div class="menu">
-            <img src="img/logo.png"></img>
-            <p>Select which native feature you would like to test out</p>
+          <img src="img/logo.png"></img>
+          <p>Here you can select which capture device you would like to use, the menu location also changes depending on what platform you are on</p>
+          <p id="platform"></p>
+        </div>
+        <div id="foot" data-role="footer">
+          <div data-role="navbar">
+            <ul>
+              <li><a id="photo" href="#photo">Photo</a></li>
+              <li><a id="video" href="#">Video</a></li>
+              <li><a id="audio" href="#">Audio</a></li>
+            </ul>
+          </div>      
+        </div>
+      </div>
+      <div id="photo" data-role="page">
+        <div data-role="header">
+          <h1>Photo</h1>
+        </div>
+        <div data-role="content">
+          <button onclick="capturePicture();">Capture Photo</button>
+          <p id="pictureStatus"></p>
+          <div id="imagelocation">
+            <img id="capturedImage"></img>
           </div>
-          <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-          </div>
-
-          <a href="camera.html" rel="external" data-ajax="false" data-role="button" data-theme="a">Camera</a>
-          <a href="geolocation.html" rel="external" data-ajax="false" data-role="button" data-theme="a">Geolocation</a>
-          <a href="#" data-role="button" data-theme="a">Media</a>
-          <a href="#" data-role="button" data-theme="a">QR Code</a>
+        </div>
+      </div>
+      <div id="audio" data-role="page">
+        <div data-role="header">
+          <h1>Audio</h1>
+        </div>
+        <div data-role="content">
+          <button onclick="captureAudio();">Capture Audio</button>
+          <p id="audioStatus"></p>
+          <button onclick="playAudio();">Play Audio</button>
         </div>
       </div>
     </body>

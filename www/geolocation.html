@@ -26,11 +26,11 @@
       <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.3.0.min.css" />
       <link rel="stylesheet" type="text/css" href="css/jquery.mobile.theme-1.3.0.min.css" />
       <link rel="stylesheet" type="text/css" href="css/index.css" />
-      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCoM9I4u9KMjvEFg7LSHUNWnX-GB1j80Ws&sensor=false"></script>
       <script type="text/javascript" src="cordova-2.5.0.js"></script>
       <script type="text/javascript" src="cordova.js"></script>
       <script type="text/javascript" src="phonegap.js"></script>
       <script type="text/javascript" src="js/geolocation.js"></script>
+      <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3.7&sensor=false"></script>
       <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
       <script type="text/javascript" src="js/jquery.mobile-1.3.0.min.js"></script>
       <title>Gelocation</title>
@@ -43,9 +43,12 @@
         <div id="noInternet">
           <p class="event listening">No Internet Access</p>
         </div>
-        <div id="mapSection">
-          <p id="location"></p>
+        <div id="geolocation">
+          <p>Latitude : <span id="lat"></span>
+          <p>Longitude : <span id="long"></span>
+        </p>
         </div>
+        <div id="mapSection"></div>
       </div>
     </body>
 </html>

@@ -21,6 +21,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
 
+	//Checks that the device is ready
 	$(".listening").css("display", "none");
 	$(".received").css("display", "block");
+
 }
