@@ -60,7 +60,7 @@ function checkPlatform() {
 
 //Audio Section
 function captureAudio() {
-	navigator.device.capture.captureAudio(audioSuccess, audioError);
+	navigator.device.capture.captureAudio(audioSuccess, audioError, {limit: 1});
 }
 
 function playAudio() {

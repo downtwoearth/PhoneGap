@@ -26,37 +26,24 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.3.0.min.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile.theme-1.3.0.min.css" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCoM9I4u9KMjvEFg7LSHUNWnX-GB1j80Ws&sensor=false"></script>
         <script type="text/javascript" src="cordova-2.5.0.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/accelerometer.js"></script>
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.3.0.min.js"></script>
-        <script type="text/javascript">
-          app.initialize();
-        </script>
       <title>Hello World</title>
     </head>
     <body>
       <div id="wrapper" data-role="page">
         <div data-role="header">
-          <h1>Home</h1>
+          <h1>Accelerometer</h1>
         </div>
         <div data-role="content" class="app">
-          <div class="menu">
-            <img src="img/logo.png"></img>
-            <p>Select which native feature you would like to test out</p>
-          </div>
-          <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-          </div>
-
-          <a href="camera.html" rel="external" data-ajax="false" data-role="button" data-theme="a">Camera</a>
-          <a href="geolocation.html" rel="external" data-ajax="false" data-role="button" data-theme="a">Geolocation</a>
-          <a href="accelerometer.html" rel="external" data-ajax="false" data-role="button" data-theme="a">Accelerometer</a>
-          <a href="#" data-role="button" data-theme="a">QR Code</a>
+          <img src="img/logo.png"></img>
+          <p>Tilt your phone to see its current X and Y positions</p>
+          <p id="currentX"></p>
+          <p id="currentY"></p>
         </div>
       </div>
     </body>
