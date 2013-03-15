@@ -23,6 +23,7 @@ document.addEventListener("online", onOnlineMode, false);
 var offline;
 
 function onDeviceReady() {
+	document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
 	checkConnection();
 
 
@@ -51,8 +52,6 @@ function onDeviceReady() {
 	function onSuccess(position) {	
 
 		//Display the current position of the device
-		$('#lat').text(position.coords.latitude);
-		$('#long').text(position.coords.longitude);
 
 		//Create a new point on the google maps with device geolocation
 		var point = new google.maps.LatLng(position.coords.latitude, 
@@ -72,7 +71,7 @@ function onDeviceReady() {
 	// onError Callback
 	function onError(error) {
 		//If there is an error, display message
-		$('#location').text(error.message);
+		$('#mapSection').text(error.message);
 	}
 
 }
