@@ -18,24 +18,65 @@
  */
 
 document.addEventListener("deviceready", onDeviceReady, false);
+var x, y, c, ctx;
+var currentX = 10;
+var currentY = 10;
 
 function onDeviceReady() {
-
+	
+	drawLine();
 	watchAcc();
-}	
+	
 
-function watchAcc() {
+	function watchAcc() {
 
-	var options = { frequency: 100 }; 
-	var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);	
-}
+		var options = { frequency: 1000 }; 
+		var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);	
+	}
 
-function onSuccess(acceleration) {
-    $('#currentX').text('X : ' + acceleration.x);
-	$('#currentY').text('Y : ' + acceleration.y);
-}
+	function onSuccess(acceleration) {
 
-function onError() {
-   $('#currentY').text('An error occured');
+		x = acceleration.x;
+		y = acceleration.y;
+
+		$('#currentX').text('X : ' + x);
+		$('#currentY').text('Y : ' + y);
+
+		$('#currentVal').text($('#myCanvas').width());
+
+		if(x < -2) {
+			currentX = currentX + (Math.abs(x) * 10);
+			
+			if(currentX < ($('#myCanvas').width() - 100)) {
+				ctx.clearRect ( 0 , 0 , $('#myCanvas').width() , $('#myCanvas').height() );
+				ctx.fillRect(currentX, currentY, 100, 50);
+			} else {
+				currentX = $('#myCanvas').width() - 100;
+			}
+			$('#currentVal').text(currentX);
+		} else if(x > 2) {
+			currentX = currentX - (Math.abs(x) * 10);
+			
+			if(currentX > 0) {
+				ctx.clearRect ( 0 , 0 , $('#myCanvas').width() , $('#myCanvas').height() );
+				ctx.fillRect(currentX, currentY, 100, 50);
+			} else {
+				currentX = 0;
+			}
+			$('#currentVal').text(currentX);
+		}
+	}
+
+	function onError() {
+	   $('#currentY').text('An error occured');
+
+	}
+
+	function drawLine()
+	{
+		ctx=document.getElementById("myCanvas").getContext("2d");
+		ctx.fillStyle = "rgb(150,29,28)";
+		ctx.fillRect(currentX, currentY, 100, 50);
+	}
 
 }
