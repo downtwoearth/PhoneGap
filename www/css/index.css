@@ -161,6 +161,10 @@ h1 {
 	display: none;
 }
 
+#backButton {
+	display: none;
+}
+
 /* Accelerometer Section */
 #myCanvas {
 	
