@@ -23,46 +23,19 @@ var platform;
 function onDeviceReady() {
 	//Find out what platform the device is running
 	platform = device.platform;
-
-	checkPlatform();
 }
 
 //Camera Section
-function capturePicture() {
-      // Take a picture using device camera and retrieve image
-      navigator.camera.getPicture(onCaptureSuccess, onCaptureFail, {saveToPhotoAlbum: true});
-	  
+function retrievePicture() {
+		// Take a picture using device camera and retrieve image
+		navigator.camera.getPicture(onCaptureSuccess, onCaptureFail, {quality : 50, destinationType: Camera.DestinationType.DATA_URL, sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY});
 }
 
-function onCaptureSuccess(imageData) {
+function onCaptureSuccess(imageURI) {
 	$('#capturedImage').css("display", "block");
-	var imageLocation = imageData;
-	$('#capturedImage').attr("src", imageLocation);
-	$('#pictureStatus').text(imageLocation);
+	$('#capturedImage').attr('src', imageURI);
 }
 
 function onCaptureFail(message) {
 	$('#pictureStatus').text(message);
-}
-
-//Device Platform Check Section
-function checkPlatform() {
-
-	if(platform == 'WinCE' || platform == 'Android') {
-		//Footer and Header
-		$('#foot').css("display", "none");
-		$('#head').css("display", "block");
-		$('#platform').text('Platform : ' + platform);
-
-		//Back Button
-		$('#backButton').css("display", "none");
-	} else {
-		//Footer and Header
-		$('#head').css("display", "none");
-		$('#foot').css("display", "block");
-		$('#platform').text(platform);
-
-		//Back Button
-		$('#backButton').css("display", "block");
-	}
 }

@@ -41,9 +41,8 @@
           <h1>Capture</h1>
           <div id="head" data-role="navbar">
             <ul>
-              <li><a href="#photo">Photo</a></li>
-              <li><a href="#">Video</a></li>
-              <li><a href="#audio">Audio</a></li>
+              <li><a href="#photo" data-theme="a">Photo</a></li>
+              <li><a href="libary.html" rel="external" data-ajax="false" data-role="button" data-theme="a">Libary</a></li>
             </ul>
           </div>
         </div>
@@ -72,16 +71,6 @@
           <div id="imagelocation">
             <img id="capturedImage"></img>
           </div>
-        </div>
-      </div>
-      <div id="audio" class="wrapper" data-role="page">
-        <div data-role="header">
-          <h1>Audio</h1>
-        </div>
-        <div data-role="content" class="app">
-          <button onclick="captureAudio();">Capture Audio</button>
-          <p id="audioStatus"></p>
-          <button onclick="playAudio();">Play Audio</button>
         </div>
       </div>
     </body>

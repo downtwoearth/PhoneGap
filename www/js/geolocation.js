@@ -18,36 +18,14 @@
  */
 
 document.addEventListener("deviceready", onDeviceReady, false);
-document.addEventListener("offline", onOfflineMode, false);
-document.addEventListener("online", onOnlineMode, false);
-var offline;
 
 function onDeviceReady() {
 	document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
-	checkConnection();
 
+	$("#noInternet").css("display", "none");
+	$("#mapSection").css("display", "block");
+	navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
-	function onOfflineMode() {
-		//if the device has no internet connection, set var to true
-		offline = true;
-	}
-
-	function onOnlineMode() {
-		//if the device has an internet connection, set var to false
-		offline = false;
-	}
-
-	function checkConnection() {
-		//Checks if the device is offline, if so do not try and get geolocation
-		if(offline == true){
-			$("#noInternet").css("display", "block");
-			$("#mapSection").css("display", "none");
-		} else {
-			$("#noInternet").css("display", "none");
-			$("#mapSection").css("display", "block");
-			navigator.geolocation.getCurrentPosition(onSuccess, onError);
-		}
-	}
 
 	function onSuccess(position) {	
 
